@@ -1,57 +1,61 @@
-public class EmpWageBuilderClassMethodUC7 {
+public class EmpWageBuilderMultiCompanyUC8 {
 
-	public static final int IS_PART_TIME = 1; 
-	public static final int IS_FULL_TIME = 2;
-	public static final int EMP_RATE_PER_HOUR = 2; 
-	public static final int NUM_OF_WORKING_DAYS = 2; 
-	public static final int MAX_HRS_IN_MONTH = 18;
-	
-	public static int computeEmpWage() {
+		//Constants
 		
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
+	
+	public static void computeEmpWage (String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+	
 		//Variables
-			
-		int empHrs = 8, totalEmpHrs = 8, totalWorkingDays = 0;
+		
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
 		
 		//Computation
 		
-		while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) {
+		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
 			
 			totalWorkingDays++;
 		
-			int empCheck = (int) Math.floor(Math.random ()* 18) % 3;
+			int empCheck = (int) Math.floor (Math.random () * 10) % 3;
 		
-			switch (empCheck) {
+			switch (empCheck) { 
+			
+			case IS_PART_TIME:
+			
+				empHrs = 4;
+				
+				break;
 		
-			case IS_PART_TIME: empHrs = 4;
-			break;
+			case  IS_FULL_TIME: 
+				
+				empHrs = 8; 
 		
-			case IS_FULL_TIME: empHrs = 8; 
-			break;
+				break;
 		
 			default:
 		
 				empHrs = 0;
-				
-			}
 		
 			totalEmpHrs += empHrs;
 		
-			System.out.println ("Day: " + totalWorkingDays + " Emp Hr: " + empHrs);
-				
+			System.out.println("Day: " + totalWorkingDays + " Emp Hr: " + empHrs);
+			
+			}
+		
+			int totalEmpWage = totalEmpHrs * empRatePerHour;
+		
+			System.out.println("Total Emp Wage for Company: " + company + " is: " + totalEmpWage);
+			
 		}
 		
-				int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR; 
+	}
 		
-				System.out.println ("Total Emp Wage: " + totalEmpWage); 
+			public static void main(String[] args) { 
+				
+				computeEmpWage("DMart", 29, 2, 19);
 		
-				return totalEmpWage;
+				computeEmpWage ("Reliance", 10, 4, 28);
 			
-	}
-	
-	public static void main(String[] ergs) { 
-		
-		computeEmpWage();
-		
-	}
-	
+			}
 }
